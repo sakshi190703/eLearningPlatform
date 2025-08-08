@@ -1,0 +1,7 @@
+npm inti -y // create package
+install express
+install express mongoose cors
+
+
+index.html // for frontend
+server.js // for backend

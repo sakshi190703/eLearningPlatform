@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreasureCycle</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .listing-card { transition: transform 0.2s; }
+    .listing-card:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">TreasureCycle</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="btn btn-outline-light me-2" href="/post">Post Item</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light me-2" href="/admin">Admin Panel</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-light me-2" href="?isAdmin=<%= !isAdmin %>">
+              <%= isAdmin ? 'Exit Admin Mode' : 'Admin Mode' %>
+            </a>
+          </li>
+          <% if (user) { %>
+            <li class="nav-item">
+              <span class="navbar-text me-2">Hello, <%= user.username %></span>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light" href="/logout">Logout</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="btn btn-outline-light me-2" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light" href="/signup">Signup</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Welcome to TreasureCycle</h1>
+    <p class="text-center mb-5">Give your used treasures a new home!</p>
+
+    <div class="row">
+      <% listings.forEach(listing => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card listing-card">
+            <img src="<%= listing.image || 'https://via.placeholder.com/150' %>" class="card-img-top" alt="<%= listing.title %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text"><%= listing.description %></p>
+              <p class="card-text text-success">$<%= listing.price %></p>
+              <% if (user) { %>
+                <form action="/buy/<%= listing._id %>" method="POST">
+                  <button type="submit" class="btn btn-primary">Buy Now</button>
+                </form>
+              <% } else { %>
+                <a href="/login" class="btn btn-secondary">Login to Buy</a>
+              <% } %>
+              <% if (isAdmin) { %>
+                <% if (listing.status === 'pending') { %>
+                  <form action="/manage/<%= listing._id %>" method="POST" class="d-inline">
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                  </form>
+                <% } %>
+                <form action="/manage/<%= listing._id %>" method="POST" class="d-inline">
+                  <input type="hidden" name="action" value="delete">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

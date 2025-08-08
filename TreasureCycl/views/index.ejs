@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TreasureCycl</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">TreasureCycl</a>
+      <div class="navbar-nav ms-auto">
+        <% if (user) { %>
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <a class="nav-link" href="/logout">Logout</a>
+        <% } else { %>
+          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/signup">Signup</a>
+        <% } %>
+          <a class="nav-link" href="/">Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1>Browse Treasures</h1>
+    <div class="row">
+      <% listings.forEach(listing => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="" class="card-img-top" alt="image">
+              <h5 class="card-title"><%= listing.title %></h5>
+              <p class="card-text"><%= listing.description %></p>
+              <p class="card-text"><strong>Price:</strong> $<%= listing.price %></p>
+              <p class="card-text"><strong>Category:</strong> <%= listing.category %></p>
+              
+              <% if (user) { %>
+                <a href="/dashboard" class="btn btn-primary">Contact Seller</a>
+              <% } else { %>
+                <a href="/signup" class="btn btn-primary">Signup to Contact</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <% if (user && ['Seller', 'Both'].includes(user.role)) { %>
+      <a href="/listing/new" class="btn btn-success mt-3">Sell Your Antiques</a>
+    <% } %>
+  </div>
+  <footer class="bg-dark text-white text-center py-3 mt-4">
+    <h6> Contact : +91 7822003024</h6>
+    <h6> Email : TreasureCycl@gmail.com</h6>
+    &copy; 2025 TreasureCycl - All rights reserved.
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    
+  </script>
+</body>
+</html>

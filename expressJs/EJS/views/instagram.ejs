@@ -1,0 +1,16 @@
+<%- include("includes/head.ejs")%>
+<body>
+    <h1> this page belongs to @ <%=username %></h1>
+    <button>message</button>
+    <button>follow</button>
+
+    <h3>Followers list : </h3>
+    <% for(let name of followers){%>
+        <li><%= name%></li>
+    <% }%>
+
+</body>
+</html>
+
+
+    

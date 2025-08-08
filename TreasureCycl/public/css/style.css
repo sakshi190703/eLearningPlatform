@@ -1,0 +1,157 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #437180; /* Light background color */
+    margin: 0;
+    padding: 0;
+    display : flex;
+    flex-direction  :column;
+    min-height : 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    flex : 1;
+}
+
+.container .mt-4 .dash{
+    color : #6ec7e5 !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #203a43; /* Dark navbar background */
+    height: 5rem;
+}
+
+.navbar-brand, .nav-link {
+    color: #101e22 !important;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.f-info {
+    text-align: center;
+    height: 8rem;
+    background-color: #203a43;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 0, 0);
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: rgb(251, 0, 0);
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Cards */
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for cards */
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 1rem !important;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-weight: 400 !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #bd74a7;
+    border-color: #663858;
+}
+
+.btn-primary:hover {
+    background-color: #663858;
+    border-color: #663858;
+}
+
+.btn-secondary {
+    background-color: #14400e;
+    border-color: #0b2607;
+}
+
+.btn-secondary:hover {
+    background-color: #309321;
+    border-color: #0b2607;
+}
+
+/* Forms */
+.form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #663858;
+    padding: 0.5rem;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: #6db5f3 !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.email-display {
+    font-size: 0.9em;
+    word-break: break-all;
+}
+
+.container .mt-5{
+    background-color: #101e22;
+}
+
+.btn .btn-link .mt-3{
+    color : white;
+    text-decoration: none;
+    background-color: #203a43;
+}
